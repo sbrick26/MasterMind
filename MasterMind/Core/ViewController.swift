@@ -13,6 +13,8 @@ class ViewController: UIViewController {
     let boardVC = BoardViewController()
     
     let answer = ["0", "1", "2", "3"]
+    let randomGuessIndex = Int.getUniqueRandomNumbers(min: 0, max: 3, count: 4)
+    
     var guessColors: [[UIColor?]] = Array(repeating: Array(repeating: UIColor.systemGray, count: 4), count: 10)
     private var guesses: [[String?]] = Array(repeating: Array(repeating: nil, count: 4), count: 10)
     
@@ -60,7 +62,7 @@ class ViewController: UIViewController {
 
 extension ViewController: KeyboardViewControllerDelegate {
     func keyboardViewController(_ vc: KeyboardViewController, didTapKey number: String) {
-        print(number)
+        //print(number)
         
         //update guesses add the color adding here
         var stop = false
@@ -132,14 +134,26 @@ extension ViewController: BoardViewControllerDatasource {
             guard let number = guesses[indexPath.section][indexPath.row - 4] else {
                 return nil
             }
-            print(guessColors)
-            return guessColors[indexPath.section][indexPath.row - 4]
+            print(randomGuessIndex)
+            return guessColors[indexPath.section][randomGuessIndex[indexPath.row - 4]]
             
         }
         
         return .systemGray
     }
     
+}
+
+extension Int {
+
+    static func getUniqueRandomNumbers(min: Int, max: Int, count: Int) -> [Int] {
+        var set = Set<Int>()
+        while set.count < count {
+            set.insert(Int.random(in: min...max))
+        }
+        return Array(set)
+    }
+
 }
 
 
