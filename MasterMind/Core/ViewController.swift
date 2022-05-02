@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     let boardVC = BoardViewController()
     
     let answer = ["0", "1", "2", "3"]
+    var guessColors: [[UIColor?]] = Array(repeating: Array(repeating: UIColor.systemGray, count: 4), count: 10)
     private var guesses: [[String?]] = Array(repeating: Array(repeating: nil, count: 4), count: 10)
     
     
@@ -61,7 +62,7 @@ extension ViewController: KeyboardViewControllerDelegate {
     func keyboardViewController(_ vc: KeyboardViewController, didTapKey number: String) {
         print(number)
         
-        //update guesses
+        //update guesses add the color adding here
         var stop = false
         if number == "Delete" {
             for i in (0..<guesses.count).reversed(){
@@ -72,6 +73,7 @@ extension ViewController: KeyboardViewControllerDelegate {
                                 stop = true
                                 break
                             }
+                            guessColors[i][j] = .systemGray
                             guesses [i][j] = nil
                             stop = true
                             break
@@ -86,9 +88,19 @@ extension ViewController: KeyboardViewControllerDelegate {
             for i in 0..<guesses.count {
                 for j in 0..<4 {
                     if guesses [i][j] == nil {
-                        print(j)
+                        //print(j)
                         guesses [i][j] = number
                         stop = true
+                        // add colors of verification
+                        if number == answer[j] {
+                            guessColors[i][j] = .systemRed
+                        } else {
+                            for x in 0..<answer.count {
+                                if answer[x] == number {
+                                    guessColors[i][j] = .systemMint
+                                }
+                            }
+                        }
                         break
                     }
                     
@@ -120,17 +132,15 @@ extension ViewController: BoardViewControllerDatasource {
             guard let number = guesses[indexPath.section][indexPath.row - 4] else {
                 return nil
             }
+            print(guessColors)
+            return guessColors[indexPath.section][indexPath.row - 4]
             
-            
-            if answer[indexPath.row - 4] == number {
-                print("row")
-                print(indexPath.row)
-                return .systemRed
-            }
         }
         
         return .systemGray
     }
     
 }
+
+
 
