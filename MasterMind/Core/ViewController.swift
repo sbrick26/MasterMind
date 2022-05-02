@@ -12,21 +12,27 @@ class ViewController: UIViewController {
     let keyboardVC = KeyboardViewController()
     let boardVC = BoardViewController()
     
+    let answer = ["0", "1", "2", "3"]
+    private var guesses: [[String?]] = Array(repeating: Array(repeating: nil, count: 4), count: 10)
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        view.backgroundColor = .systemGray6
+        view.backgroundColor = .systemGray2
         addChildren()
     }
 
     private func addChildren() {
         addChild(keyboardVC)
         keyboardVC.didMove(toParent: self)
+        keyboardVC.delegate = self
         keyboardVC.view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(keyboardVC.view)
         
         addChild(boardVC)
         boardVC.didMove(toParent: self)
+        boardVC.datasource = self
         boardVC.view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(boardVC.view)
         
@@ -46,6 +52,85 @@ class ViewController: UIViewController {
             keyboardVC.view.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
     }
+    
+    
 
+}
+
+extension ViewController: KeyboardViewControllerDelegate {
+    func keyboardViewController(_ vc: KeyboardViewController, didTapKey number: String) {
+        print(number)
+        
+        //update guesses
+        var stop = false
+        if number == "Delete" {
+            for i in (0..<guesses.count).reversed(){
+                for j in (0..<4).reversed(){
+                        if guesses [i][j] != nil {
+                            
+                            if j == 3 {
+                                stop = true
+                                break
+                            }
+                            guesses [i][j] = nil
+                            stop = true
+                            break
+                        }
+                    }
+                    if stop {
+                        break
+                    }
+            }
+        }
+        else {
+            for i in 0..<guesses.count {
+                for j in 0..<4 {
+                    if guesses [i][j] == nil {
+                        print(j)
+                        guesses [i][j] = number
+                        stop = true
+                        break
+                    }
+                    
+                }
+                if stop {
+                    break
+                }
+            }
+        }
+        
+        boardVC.reloadData()
+    }
+}
+
+extension ViewController: BoardViewControllerDatasource {
+    var currentGuesses: [[String?]] {
+        return guesses
+    }
+    
+    func boxColor(at indexPath: IndexPath) -> UIColor? {
+        let rowIndex = indexPath.section
+        
+        if indexPath.row > 3 {
+            let count = guesses[rowIndex].compactMap({ $0 }).count
+            //print(count)
+            guard count == 4 else {
+                return nil
+            }
+            guard let number = guesses[indexPath.section][indexPath.row - 4] else {
+                return nil
+            }
+            
+            
+            if answer[indexPath.row - 4] == number {
+                print("row")
+                print(indexPath.row)
+                return .systemRed
+            }
+        }
+        
+        return .systemGray
+    }
+    
 }
 
