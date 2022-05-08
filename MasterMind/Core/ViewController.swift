@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        view.backgroundColor = .
+        view.backgroundColor = .systemGray6
         
         
         Task {
@@ -49,7 +49,7 @@ class ViewController: UIViewController {
         
     }
 
-    private func addChildren() {
+    func addChildren() {
         addChild(keyboardVC)
         keyboardVC.didMove(toParent: self)
         keyboardVC.delegate = self
@@ -84,20 +84,20 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: KeyboardViewControllerDelegate {
+    
+    func goToResultScreen(winResult: String) {
+        print("new view here")
+        
+        let vc = (UIStoryboard(name: "Main",bundle: nil).instantiateViewController(withIdentifier: "ResultViewController") as! ResultViewController)
+        vc.result = winResult
+        self.present(vc, animated: true, completion: nil)
+    }
+    
     func keyboardViewController(_ vc: KeyboardViewController, didTapKey number: String) {
         //print(number)
         
         //update guesses add the color adding here
         var stop = false
-        
-        if guesses[9][3] != nil {
-            //new view
-            print("new view here")
-            
-            let vc = (UIStoryboard(name: "Main",bundle: nil).instantiateViewController(withIdentifier: "ResultViewController") as! ResultViewController)
-            vc.result = "Success"
-            self.present(vc, animated: true, completion: nil)
-        }
         
         if number == "Delete" {
             for i in (0..<guesses.count).reversed(){
@@ -140,6 +140,11 @@ extension ViewController: KeyboardViewControllerDelegate {
                     }
                     
                 }
+                
+                if guesses[i] == Answer.answer {
+                    goToResultScreen(winResult: "You Win!!")
+                }
+                
                 if stop {
                     break
                 }
@@ -147,6 +152,13 @@ extension ViewController: KeyboardViewControllerDelegate {
         }
         
         boardVC.reloadData()
+        
+        
+        
+        if guesses[9][3] != nil {
+            //new view
+            goToResultScreen(winResult: "You Lost.")
+        }
     }
 }
 
@@ -167,7 +179,7 @@ extension ViewController: BoardViewControllerDatasource {
             guard let number = guesses[indexPath.section][indexPath.row - 4] else {
                 return nil
             }
-            print(randomGuessIndex)
+            //print(randomGuessIndex)
             return guessColors[indexPath.section][randomGuessIndex[indexPath.row - 4]]
             
         }

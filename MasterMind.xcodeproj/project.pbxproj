@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C48CA5182827C8280090A24C /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48CA5172827C8280090A24C /* ResultViewController.swift */; };
+		C48CA51A2827E6680090A24C /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48CA5192827E6680090A24C /* StartViewController.swift */; };
 		C4F0FDD9282226BA00B81613 /* RandomNum.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F0FDD8282226BA00B81613 /* RandomNum.swift */; };
 		C4F118E9281F44F100D7C8AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F118E8281F44F100D7C8AE /* AppDelegate.swift */; };
 		C4F118EB281F44F100D7C8AE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F118EA281F44F100D7C8AE /* SceneDelegate.swift */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		C48CA5172827C8280090A24C /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		C48CA5192827E6680090A24C /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		C4F0FDD8282226BA00B81613 /* RandomNum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomNum.swift; sourceTree = "<group>"; };
 		C4F118E5281F44F100D7C8AE /* MasterMind.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MasterMind.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4F118E8281F44F100D7C8AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 				C4F11902281F4D0700D7C8AE /* KeyCell.swift */,
 				C4F0FDD8282226BA00B81613 /* RandomNum.swift */,
 				C48CA5172827C8280090A24C /* ResultViewController.swift */,
+				C48CA5192827E6680090A24C /* StartViewController.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -174,6 +177,7 @@
 				C4F118E9281F44F100D7C8AE /* AppDelegate.swift in Sources */,
 				C48CA5182827C8280090A24C /* ResultViewController.swift in Sources */,
 				C4F118EB281F44F100D7C8AE /* SceneDelegate.swift in Sources */,
+				C48CA51A2827E6680090A24C /* StartViewController.swift in Sources */,
 				C4F11903281F4D0700D7C8AE /* KeyCell.swift in Sources */,
 				C4F118FF281F463000D7C8AE /* KeyboardViewController.swift in Sources */,
 				C4F11901281F464A00D7C8AE /* BoardViewController.swift in Sources */,

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qiu-uH-hb9">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
@@ -13,11 +13,12 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MasterMind" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="ENb-N0-h1m"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -68,6 +69,57 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7X4-mm-FiD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1166.6666666666667" y="20.758928571428569"/>
+        </scene>
+        <!--Start View Controller-->
+        <scene sceneID="EGt-V9-o38">
+            <objects>
+                <viewController id="Qiu-uH-hb9" customClass="StartViewController" customModule="MasterMind" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oTQ-0f-Agg">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qiz-X8-8BK">
+                                <rect key="frame" x="125" y="414.5" width="164" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="Q4s-M1-EE0"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Start Game"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="0hY-4i-dac"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MASTERMIND" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SS5-f3-eyA">
+                                <rect key="frame" x="100" y="344" width="214" height="20.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20.5" id="fIW-cd-tRc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="kqY-Kb-RmP"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="qiz-X8-8BK" firstAttribute="top" secondItem="SS5-f3-eyA" secondAttribute="bottom" constant="50" id="6vT-eL-uiJ"/>
+                            <constraint firstItem="kqY-Kb-RmP" firstAttribute="trailing" secondItem="SS5-f3-eyA" secondAttribute="trailing" constant="100" id="8O6-3q-QgG"/>
+                            <constraint firstItem="SS5-f3-eyA" firstAttribute="leading" secondItem="kqY-Kb-RmP" secondAttribute="leading" constant="100" id="Ge8-hy-QMS"/>
+                            <constraint firstItem="SS5-f3-eyA" firstAttribute="top" secondItem="kqY-Kb-RmP" secondAttribute="top" constant="300" id="JBY-9g-tBs"/>
+                            <constraint firstItem="qiz-X8-8BK" firstAttribute="leading" secondItem="kqY-Kb-RmP" secondAttribute="leading" constant="125" id="KRo-VK-MZJ"/>
+                            <constraint firstItem="qiz-X8-8BK" firstAttribute="top" secondItem="SS5-f3-eyA" secondAttribute="bottom" constant="50" id="R3u-A6-ckf"/>
+                            <constraint firstItem="kqY-Kb-RmP" firstAttribute="trailing" secondItem="qiz-X8-8BK" secondAttribute="trailing" constant="125" id="RiM-2K-WeD"/>
+                            <constraint firstItem="kqY-Kb-RmP" firstAttribute="bottom" secondItem="qiz-X8-8BK" secondAttribute="bottom" constant="200" id="Wpy-17-Tpb"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="startGameButton" destination="qiz-X8-8BK" id="lDu-v9-rKu"/>
+                        <outlet property="titleLabel" destination="SS5-f3-eyA" id="Ra4-iP-sQo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZqD-FH-Ykp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1081.1594202898552" y="20.758928571428569"/>
         </scene>
     </scenes>
     <resources>

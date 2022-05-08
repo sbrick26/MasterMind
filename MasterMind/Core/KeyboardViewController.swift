@@ -50,7 +50,7 @@ class KeyboardViewController: UIViewController, UICollectionViewDelegateFlowLayo
             
         }
         keys.append(["Enter","Delete"])
-        print(keys)
+        //print(keys)
         
     }
     
@@ -84,7 +84,7 @@ extension KeyboardViewController {
         
         var size: CGFloat = (collectionView.frame.size.width - margin)/4
         
-        print(indexPath.section)
+        //print(indexPath.section)
         
         if indexPath.section > 1 {
             size = CGFloat((collectionView.frame.size.width - margin)/2)
