@@ -13,7 +13,12 @@ class StartViewController: UIViewController {
     @IBOutlet weak var startGameButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        view.backgroundColor = .black
+        titleLabel.textColor = .green
+        startGameButton.titleLabel?.textColor = .black
+        startGameButton.setTitleColor(.black, for: .normal)
+        startGameButton.setTitleColor(.black, for: .selected)
         // Do any additional setup after loading the view.
     }
     

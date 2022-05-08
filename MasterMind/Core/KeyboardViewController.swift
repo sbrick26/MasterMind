@@ -49,7 +49,7 @@ class KeyboardViewController: UIViewController, UICollectionViewDelegateFlowLayo
             keys.append(nums)
             
         }
-        keys.append(["Enter","Delete"])
+        keys.append(["New Game","Delete"])
         //print(keys)
         
     }

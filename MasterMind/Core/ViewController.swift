@@ -22,7 +22,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        view.backgroundColor = .systemGray6
+        view.backgroundColor = .black
         
         
         Task {
@@ -99,7 +99,16 @@ extension ViewController: KeyboardViewControllerDelegate {
         //update guesses add the color adding here
         var stop = false
         
-        if number == "Delete" {
+        if number == "New Game" {
+            Task {
+                try await RandomNumber.getData()
+                print("MIDGAMESWITCH")
+                print(Answer.answer)
+                resetGame()
+                
+            }
+        }
+        else if number == "Delete" {
             for i in (0..<guesses.count).reversed(){
                 for j in (0..<4).reversed(){
                         if guesses [i][j] != nil {
