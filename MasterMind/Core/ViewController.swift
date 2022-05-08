@@ -7,23 +7,46 @@
 
 import UIKit
 
+
 class ViewController: UIViewController {
 
     let keyboardVC = KeyboardViewController()
     let boardVC = BoardViewController()
     
-    let answer = ["0", "1", "2", "3"]
     let randomGuessIndex = Int.getUniqueRandomNumbers(min: 0, max: 3, count: 4)
     
     var guessColors: [[UIColor?]] = Array(repeating: Array(repeating: UIColor.systemGray, count: 4), count: 10)
-    private var guesses: [[String?]] = Array(repeating: Array(repeating: nil, count: 4), count: 10)
+    var guesses: [[String?]] = Array(repeating: Array(repeating: nil, count: 4), count: 10)
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        view.backgroundColor = .systemGray2
-        addChildren()
+        view.backgroundColor = .
+        
+        
+        Task {
+            try await RandomNumber.getData()
+            print(Answer.answer)
+            self.addChildren()
+        }
+        
+        
+    }
+    
+    func resetGame() {
+        for i in 0..<guesses.count {
+            for j in 0..<guesses[i].count {
+                guesses[i][j] = nil
+            }
+        }
+        for i in 0..<guessColors.count {
+            for j in 0..<guessColors[i].count {
+                guessColors[i][j] = UIColor.systemGray
+            }
+        }
+        boardVC.reloadData()
+        
     }
 
     private func addChildren() {
@@ -66,6 +89,16 @@ extension ViewController: KeyboardViewControllerDelegate {
         
         //update guesses add the color adding here
         var stop = false
+        
+        if guesses[9][3] != nil {
+            //new view
+            print("new view here")
+            
+            let vc = (UIStoryboard(name: "Main",bundle: nil).instantiateViewController(withIdentifier: "ResultViewController") as! ResultViewController)
+            vc.result = "Success"
+            self.present(vc, animated: true, completion: nil)
+        }
+        
         if number == "Delete" {
             for i in (0..<guesses.count).reversed(){
                 for j in (0..<4).reversed(){
@@ -94,11 +127,11 @@ extension ViewController: KeyboardViewControllerDelegate {
                         guesses [i][j] = number
                         stop = true
                         // add colors of verification
-                        if number == answer[j] {
+                        if number == Answer.answer[j] {
                             guessColors[i][j] = .systemRed
                         } else {
-                            for x in 0..<answer.count {
-                                if answer[x] == number {
+                            for x in 0..<Answer.answer.count {
+                                if Answer.answer[x] == number {
                                     guessColors[i][j] = .systemMint
                                 }
                             }
