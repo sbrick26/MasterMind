@@ -82,7 +82,7 @@ extension KeyboardViewController {
         
         let margin: CGFloat = 20
         
-        var size: CGFloat = (collectionView.frame.size.width - margin)/4
+        var size: CGFloat = (collectionView.frame.size.width - margin)/CGFloat(numbers[0].count)
         
         //print(indexPath.section)
         
@@ -101,7 +101,7 @@ extension KeyboardViewController {
         let count: CGFloat = CGFloat(collectionView.numberOfItems(inSection: section))
         let margin: CGFloat = 20
         
-        var size: CGFloat = (collectionView.frame.size.width - margin)/4
+        var size: CGFloat = (collectionView.frame.size.width - margin)/CGFloat(numbers[0].count)
         
         //calculate margin with inter spacing
         var inset: CGFloat = (collectionView.frame.size.width - (size * count) - (2 * count))/2
