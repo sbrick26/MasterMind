@@ -31,5 +31,4 @@ class StartViewController: UIViewController {
         startGameButton.setTitleColor(.black, for: .normal)
         startGameButton.setTitleColor(.black, for: .selected)
     }
-
 }
