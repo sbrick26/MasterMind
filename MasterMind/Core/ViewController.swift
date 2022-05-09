@@ -185,7 +185,7 @@ extension ViewController: KeyboardViewControllerDelegate {
     }
 }
 
-// this extension allows us to control what is seen inside our BoardVC cells, which reloads on every user action. this also allows us to take values calculated in the didTapKey and pass to the BoardVC collection view
+// this extension allows us to correct guesses and colors inside our BoardVC cells
 extension ViewController: BoardViewControllerDatasource {
     var currentGuesses: [[String?]] {
         return guesses
