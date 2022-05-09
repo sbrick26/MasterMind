@@ -67,7 +67,6 @@ extension KeyboardViewController {
     
     // cell configuration for each cell at a certain position
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         // protected cell assignments or throw error
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: KeyCell.identifier, for: indexPath) as? KeyCell else {
             fatalError()
@@ -77,18 +76,13 @@ extension KeyboardViewController {
         cell.configure(with: number)
         return cell
     }
-    
     // function for the sizing and margins of a ccertain cell for Keyboard collection view
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        
         let margin: CGFloat = 20
-        
         //evenly spaces cells based on how many keys are in the row
         var size: CGFloat = (collectionView.frame.size.width - margin)/CGFloat(numbers[0].count)
-        
         //print(indexPath.section)
-        
         // checks if it is the last row, since those will be formatted differently
         if indexPath.section > 1 {
             size = CGFloat((collectionView.frame.size.width - margin)/2)
@@ -101,19 +95,15 @@ extension KeyboardViewController {
         
         var left: CGFloat = 1
         var right: CGFloat = 1
-        
         let count: CGFloat = CGFloat(collectionView.numberOfItems(inSection: section))
         let margin: CGFloat = 20
-        
         var size: CGFloat = (collectionView.frame.size.width - margin)/CGFloat(numbers[0].count)
-        
         //calculate margin with inter spacing
         var inset: CGFloat = (collectionView.frame.size.width - (size * count) - (2 * count))/2
         left = inset
         right = inset
         if section > 1 {
             size = CGFloat((collectionView.frame.size.width - margin)/2)
-            
             //calculate margin with inter spacing
             inset = CGFloat((collectionView.frame.size.width - (size * count) - (2 * count))/2)
             left = inset
@@ -122,13 +112,11 @@ extension KeyboardViewController {
         }
         return UIEdgeInsets(top: 2, left: left, bottom: 2, right: right)
     }
-    
     //tap on cell - did select certain cell on Keyboard collection view
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //deselect item
         collectionView.deselectItem(at: indexPath, animated: true)
         let number = keys[indexPath.section][indexPath.row]
-        
         //send this number to KeyboardVC delegate for didTapKey
         delegate?.keyboardViewController(self, didTapKey: number)
     }
