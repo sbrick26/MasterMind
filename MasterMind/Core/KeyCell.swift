@@ -10,6 +10,7 @@ import UIKit
 class KeyCell: UICollectionViewCell {
     static let identifier = "KeyCell"
     
+    // lebel design for all keycells used in collection views
     let label: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -19,7 +20,7 @@ class KeyCell: UICollectionViewCell {
         //label.font = .systemFont(ofSize: 18, weight: .medium)
         return label
     }()
-    
+    // initilizer for KeyCell, here we add the label to the view and define constraints
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .black
@@ -32,10 +33,10 @@ class KeyCell: UICollectionViewCell {
             label.topAnchor.constraint(equalTo: contentView.topAnchor),
             label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
 
-
         ])
     }
     
+    // clear label.text
     override func prepareForReuse() {
         super.prepareForReuse()
         label.text = nil
@@ -45,6 +46,7 @@ class KeyCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // set label.text to number 
     func configure(with number: String) {
         label.text = number
     }

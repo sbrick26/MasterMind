@@ -22,7 +22,7 @@ class ResultViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        // Result View setup + design
         view.backgroundColor = .black
         // Do any additional setup after loading the view.
         print("result view")
@@ -42,7 +42,9 @@ class ResultViewController: UIViewController {
         
         saveGameButton.titleLabel?.font =  UIFont(name: "American Typewriter", size: 20)
         saveGameButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        // creates default save value to store the count as 0 if count does not exist
         UserDefaults.standard.register(defaults: ["wincount": 0])
+        // if the player won, the count will increase by 1 and saved again via UserDefaults
         if result == "You Win!!" {
             var currentScore = UserDefaults.standard.object(forKey: "wincount")
             currentScore = currentScore as! Int + 1
@@ -61,6 +63,7 @@ class ResultViewController: UIViewController {
     @objc func buttonAction(sender: UIButton!) {
         print("Button tapped")
         
+        // accessing previous VC to reset the game
         let presentedBy = presentingViewController as? ViewController
         
         Task {
